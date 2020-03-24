@@ -1,0 +1,3 @@
+Templates store for ui-parts
+---------------------------------
+https://bootsnipp.com/tags/shop

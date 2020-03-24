@@ -19,8 +19,12 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': { view: 'pages/homepage' },
-
+  //'/': { view: 'pages/homepage' },
+  '/': { action: 'home' },
+  '/admin/product/list': { action: 'product/admin/list' },
+  '/product-details/:id': { action: 'product/details' },
+  '/admin/product/new': { action: 'product/admin/add' },
+  'POST /admin/product/create' : { action: 'product/admin/create' },
 
   /***************************************************************************
   *                                                                          *
