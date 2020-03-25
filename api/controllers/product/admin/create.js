@@ -16,7 +16,7 @@ module.exports = async function create(req, res) {
   var display_price = req.body.display_price;
   var description = req.body.description;
 
-  req.file('display_image_file').upload({
+  await req.file('display_image_file').upload({
     // don't allow the total upload size to exceed ~10MB
     maxBytes: 10000000,
     //dirname: require('path').resolve(sails.config.appPath, 'uploads/images/display'),
