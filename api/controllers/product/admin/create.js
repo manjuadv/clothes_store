@@ -32,21 +32,6 @@ module.exports = async function create(req, res) {
 
     var display_image = uploadedFiles[0].filename;
 
-    // Get the base URL for our deployed application from our custom config
-    // (e.g. this might be "http://foobar.example.com:1339" or "https://example.com")
-    //var baseUrl = sails.config.custom.baseUrl;
-
-   /*  var prodexe = await Product.create({name:name, display_image:display_image, display_price:display_price, description:description}).exec(function(err, prod){
-      if(err){
-          res.send(500,{error:err})
-      }
-      //res.redirect('/admin/product/list');
-      return res.json({
-        message: uploadedFiles.length + ' file(s) uploaded successfully!',
-        files: uploadedFiles
-      });
-  }); */
-
   try {
     var prod = await Product.create({name:name, display_image:display_image, display_price:display_price, description:description}).fetch();
   
