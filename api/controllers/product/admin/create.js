@@ -16,10 +16,10 @@ module.exports = async function create(req, res) {
   var display_price = req.body.display_price;
   var description = req.body.description;
 
-
-  req.file('display_image').upload({
+  req.file('display_image_file').upload({
     // don't allow the total upload size to exceed ~10MB
-    maxBytes: 10000000
+    maxBytes: 10000000,
+    dirname: require('path').resolve(sails.config.appPath, 'uploads/images/display'),
   },function whenDone(err, uploadedFiles) {
     if (err) {
       return res.serverError(err);
@@ -36,11 +36,15 @@ module.exports = async function create(req, res) {
     // (e.g. this might be "http://foobar.example.com:1339" or "https://example.com")
     //var baseUrl = sails.config.custom.baseUrl;
 
-    Product.create({name:name, display_image:display_image, display_price:display_price, description:description}).exec(function(err){
+    var prod = Product.create({name:name, display_image:display_image, display_price:display_price, description:description}).exec(function(err){
       if(err){
-          res.send(500,{error:'db error'})
+          res.send(500,{error:err})
       }
       res.redirect('/admin/product/list');
+      // return res.json({
+      //   message: uploadedFiles.length + ' file(s) uploaded successfully!',
+      //   files: uploadedFiles
+      // });
   });
 
   });

@@ -26,9 +26,6 @@ module.exports = {
       type:'string',
       required: true,
     },
-    description:{
-      type:'string',
-    },
     display_image:{
       type:'string',
       required: true,
@@ -36,6 +33,9 @@ module.exports = {
     display_price:{
       type:'number',
       required: true,
+    },
+    description:{
+      type:'string',
     }
   },
 

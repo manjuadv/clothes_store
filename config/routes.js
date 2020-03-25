@@ -26,6 +26,9 @@ module.exports.routes = {
   '/admin/product/new': { action: 'product/admin/add' },
   'POST /admin/product/create' : { action: 'product/admin/create' },
 
+  '/file/index': { action: 'file/index' }, // for testing only
+  'POST /file/upload': { action: 'file/upload' }, // for testing only
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *
