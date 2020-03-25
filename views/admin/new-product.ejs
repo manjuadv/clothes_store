@@ -1,21 +1,29 @@
 
     <h1 class="display-4">Add Product</h1>
     <form action="/admin/product/create" method="POST" enctype="multipart/form-data">
-        <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" name="name" class="form-control">
+        <div class="form-group row">
+            <label for="name" class="col-sm-2 col-form-label form-control-sm">Name</label>
+            <div class="col-sm-6">
+                <input type="text" id="name" name="name" class="form-control form-control-sm" required>
+            </div>
         </div>
-            <div class="form-group">
-                    <label for="display_price">Display Price</label>
-                    <input type="text" name="display_price" class="form-control">
-                </div>
-        <div class="form-group">
-                <label for="description">body</label>
-                <textarea type="text" name="description" class="form-control"></textarea>
+        <div class="form-group row">
+            <label for="display_price" class="col-sm-2 col-form-label form-control-sm">Display Price</label>
+            <div class="col-sm-6">
+                <input type="number" id="display_price" name="display_price" class="form-control form-control-sm" required>
+            </div>                    
         </div>
-        <div class="form-group">
-            <label for="display_image_file">Display image</label>                
-            <input type="file" name="display_image_file" multiple="multiple">
+        <div class="form-group row">
+            <label for="description" class="col-sm-2 col-form-label form-control-sm">Description</label>
+            <div class="col-sm-6">
+                <textarea type="text" id="description" name="description" class="form-control form-control-sm" required></textarea>
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="display_image_file" class="col-sm-2 col-form-label form-control-sm">Display image</label>                
+            <div class="col-sm-6">
+                <input type="file" class="form-control form-control-sm" id="display_image_file" name="display_image_file" multiple="multiple" required>
+            </div>
         </div>
         <input type="submit" value="Submit" class="btn btn-primary">
     </form>
