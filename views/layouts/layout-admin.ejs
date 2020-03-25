@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+    <title>Store - Administration</title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <%/* If you want to discourage search engines from indexing this site, uncomment the following line: */%>
+    <%/* <meta name="robots" content="noindex"> */%>
+
+
+    <!--
+        Stylesheets and Preprocessors
+        ==============================
+
+        You can always bring in CSS files manually with `<link>` tags, or asynchronously
+        using a solution like AMD (RequireJS).  Or, if you like, you can take advantage
+        of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+        By default, stylesheets from your `assets/styles` folder are included
+        here automatically (between STYLES and STYLES END). Both CSS (.css) and LESS (.less)
+        are supported. In production, your styles will be minified and concatenated into
+        a single file.
+
+        To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Change the order of your CSS files
+            + Import stylesheets from other directories
+            + Use a different or additional preprocessor, like SASS, SCSS or Stylus
+    -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <!--STYLES-->
+    <link rel="stylesheet" href="/styles/importer.css">
+    <link rel="stylesheet" href="/styles/layout-store.css">
+    <link rel="stylesheet" href="/styles/product-details.css">
+    <!--STYLES END-->
+  </head>
+
+  <body>
+      <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="/">Store - Admin</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="/">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Services</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Contact</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Admin
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" href="/admin/product/list">Product List</a>
+                  <a class="dropdown-item" href="/admin/product/new">New Product</a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+              </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container">
+     <%- body %>
+
+     <% if (typeof messages != 'undefined' && messages && messages['error'].length > 0) { %>
+      <div class="alert alert-danger">
+      <% messages['error'].forEach(function(message) { %>
+        <%= message %>
+        <br>
+      <% }); %>
+      </div>
+      <br>
+    <% } %>
+    <% if (typeof messages != 'undefined' && messages && messages['warning'].length > 0) { %>
+      <div class="alert alert-warning">
+      <% messages['warning'].forEach(function(message) { %>
+        <%= message %>
+        <br>
+      <% }); %>
+      </div>
+      <br>
+    <% } %>
+    <% if (typeof messages != 'undefined' && messages && messages['success'].length > 0) { %>
+      <div class="alert alert-success">
+      <% messages['success'].forEach(function(message) { %>
+        <%= message %>
+        <br>
+      <% }); %>
+      </div>
+      <br>
+    <% } %> 
+    
+    </div>
+      <!-- Footer -->
+      <footer class="py-5 bg-primary">
+        <div class="container">
+          <p class="m-0 text-center text-white">Copyright &copy; Your Website 2019</p>
+        </div>
+        <!-- /.container -->
+      </footer>
+
+
+
+    <!--
+        Client-side Templates
+        ========================
+
+        HTML templates are important prerequisites of modern, rich client applications.
+        To work their magic, frameworks like React, Vue.js, Angular, Ember, and Backbone
+        require that you load these templates client-side.
+
+        By default, your Gruntfile is configured to automatically load and precompile
+        client-side JST templates in your `assets/templates` folder, then
+        include them here automatically (between TEMPLATES and TEMPLATES END).
+
+        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
+        For example, here are a few things you could do:
+
+            + Import templates from other directories
+            + Use a different view engine (handlebars, dust, pug/jade, etc.)
+            + Internationalize your client-side templates using a server-side
+              stringfile before they're served.
+    -->
+
+    <!--TEMPLATES-->
+    <!--TEMPLATES END-->
+
+
+    <!--
+        Server-side View Locals
+        ========================
+
+        Sometimes, it's convenient to get access to your server-side view locals from
+        client-side JavaScript.  This can improve page load times, remove the need for
+        extra AJAX requests, and make your client-side code easier to understand and
+        to maintain.  Sails provides a simple mechanism for accessing dynamic view
+        locals: the "exposeLocalsToBrowser()" view partial.
+
+        For more information on using this built-in feature, see:
+        https://sailsjs.com/docs/concepts/views/locals#?escaping-untrusted-data-using-exposelocalstobrowser
+
+    -->
+
+
+    <!--
+
+      Client-side Javascript
+      ========================
+
+      You can always bring in JS files manually with `script` tags, or asynchronously
+      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
+      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
+
+      By default, files in your `assets/js` folder are included here
+      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
+      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
+      and concatenated into a single file.
+
+      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
+      For example, here are a few things you could do:
+
+          + Change the order of your scripts
+          + Import scripts from other directories
+          + Use a different preprocessor, like TypeScript
+
+    -->
+
+    <!--SCRIPTS-->
+    <script src="/dependencies/sails.io.js"></script>
+    <!--SCRIPTS END-->
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>    
+  </body>
+</html>

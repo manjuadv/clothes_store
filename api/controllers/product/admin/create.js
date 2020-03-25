@@ -19,8 +19,8 @@ module.exports = async function create(req, res) {
   req.file('display_image_file').upload({
     // don't allow the total upload size to exceed ~10MB
     maxBytes: 10000000,
-    dirname: require('path').resolve(sails.config.appPath, 'uploads/images/display'),
-  },function whenDone(err, uploadedFiles) {
+    //dirname: require('path').resolve(sails.config.appPath, 'uploads/images/display'),
+  },async function whenDone(err, uploadedFiles) {
     if (err) {
       return res.serverError(err);
     }
@@ -32,20 +32,31 @@ module.exports = async function create(req, res) {
 
     var display_image = uploadedFiles[0].filename;
 
-    // Get the base URL for our deployed application from our custom config
-    // (e.g. this might be "http://foobar.example.com:1339" or "https://example.com")
-    //var baseUrl = sails.config.custom.baseUrl;
+  try {
+    var prod = await Product.create({name:name, display_image:display_image, display_price:display_price, description:description}).fetch();
+  
+    var fs = require('fs');
+    var file_name = require('path').resolve(sails.config.appPath, 'uploads/images/display') + '\\' + prod.id + '.jpg';
+    var src = uploadedFiles[0].fd;
 
-    var prod = Product.create({name:name, display_image:display_image, display_price:display_price, description:description}).exec(function(err){
-      if(err){
-          res.send(500,{error:err})
-      }
-      res.redirect('/admin/product/list');
-      // return res.json({
-      //   message: uploadedFiles.length + ' file(s) uploaded successfully!',
-      //   files: uploadedFiles
-      // });
-  });
+    fs.copyFile(src,  file_name, (err) => {
+      if (err) throw err;
+      
+    });
+
+    var messages = { success: [], error: [], warning: [] };
+    messages['success'].push('Product added successfully');
+    return res.view('admin/new-product',{layout: 'layouts/layout-admin', messages:messages});
+
+  } catch (err) {
+    if (err && err.code === 'E_UNIQUE') {
+      return res.sendStatus(409);
+    } else if (err && err.name === 'UsageError') {
+      return res.badRequest();
+    } else if (err) {
+      return res.serverError(err);
+    }
+  }
 
   });
 
