@@ -1,1 +1,2 @@
 sails-mysql
+sails-local-fs

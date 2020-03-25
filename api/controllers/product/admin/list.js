@@ -16,7 +16,7 @@ module.exports = async function list(req, res) {
     if(err){
         res.send(500,{error:'db error'})
     }
-    res.view('admin/product-list',{products:products});
+    res.view('admin/product-list',{layout: 'layouts/layout-admin',products:products});
   });
 
 };

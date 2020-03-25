@@ -12,6 +12,6 @@
  */
 module.exports = async function add(req, res) {
 
-    res.view('admin/new-product');
+    res.view('admin/new-product',{layout: 'layouts/layout-admin'});
 
 };
